@@ -262,6 +262,14 @@ article img {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 /* HOUSE GRADIENT END */
+
+.housecrest {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  animation: rota 5s;
+}
+
 /* STUDENT POPUP END */
 
 /* FOOTER START */

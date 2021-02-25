@@ -11,6 +11,8 @@ let filterType = "all";
 let sortBy = "sorting";
 const search = document.querySelector(".search");
 search.addEventListener("input", startSearch);
+//Students 
+let numberOfStudents = document.querySelector(".studentnumber");
 
 function initPage() {
   console.log("ready");
@@ -32,6 +34,8 @@ function startSearch(event) {
     return name.toLowerCase().includes(event.target.value);
   });
 
+  //Show number of students
+  numberOfStudents.textContent = `Students: ${searchList.length}`;
   showStudentList(searchList);
 }
 
@@ -74,8 +78,12 @@ function filterList(filterredList) {
   }
   //TODO: filter on expelled and unexpelled
 
+  //Show number of students
+  numberOfStudents.textContent = `Students: ${filterredList.length}`;
+
   console.log(filterredList);
   return filterredList;
+  
 }
 
 function isGryffindor(house) {
@@ -102,6 +110,7 @@ function selectedSort(event) {
   //checks what option is clicked
   sortBy = event;
   console.log(`Use this ${sortBy}`);
+  
   //sortList(sortBy);
   buildList();
 }
@@ -325,6 +334,9 @@ function prepareObjects(jsonData) {
     //Gender 
     student.gender = jsonObject.gender; 
 
+    //Show number of students
+    numberOfStudents.textContent = `Students: ${allStudents.length}`;
+   
     //Adds all objects (students) into the array
     allStudents.push(student);
   });
@@ -378,7 +390,7 @@ function openSingleStudent(student) {
   }
   //popup.querySelector(".blodstatus").textContent = student.house;
   popup.querySelector(".house").textContent = student.house;
-  //popup.querySelector(".house_crest").src = ;
+  //popup.querySelector(".housecrest").src = ;
   if (student.photo != null) {
     popup.querySelector("img").src = "images/" + student.photo;
   }
@@ -387,11 +399,15 @@ function openSingleStudent(student) {
 
 //Div where the theme color will show
 const housecolor = document.querySelector('.housecolor');
+const housecrest = document.querySelector('.housecrest').src;
 //Color for each house
 //Code from - https://www.w3schools.com/js/js_switch.asp
 switch (true) {
+  //If there is a match, the associated block of code is executed
+  //If there is no match, the default code block is executed (white background)
   case student.house === 'Gryffindor':
     housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(238,186,48,1) 0%, rgba(238,186,48,1) 25%, rgba(188,126,28,1) 50%, rgba(116,0,1,1) 75%, rgba(116,0,1,1) 100%);');
+    housecrest.setAttribute('url(/housecrest/gryffindor.jpeg);'); 
     break;
   case student.house === 'Slytherin':
     housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(42,98,61,1) 0%, rgba(26,71,42,1) 50%, rgba(0,0,0,1) 100%);');
