@@ -9,6 +9,8 @@ let temp = document.querySelector("template");
 let container = document.querySelector("section");
 let filterType = "all";
 let sortBy = "sorting";
+const search = document.querySelector(".search");
+search.addEventListener("input", startSearch);
 
 function initPage() {
   console.log("ready");
@@ -18,14 +20,26 @@ function initPage() {
   fetchStudentData();
 }
 
+//Search 
+function startSearch(event) {
+  let searchList = allStudents.filter((student) => {
+    let name = "";
+    if (student.lastname === null) {
+      name = student.firstname;
+    } else {
+      name = student.firstname + " " + student.lastname;
+    }
+    return name.toLowerCase().includes(event.target.value);
+  });
+
+  showStudentList(searchList);
+}
+
 function readBtns() {
   //adds an eventlistener to each filterbutton
   document
     .querySelectorAll("[data-action='filter']")
     .forEach((button) => button.addEventListener("click", selectedFilter));
-
-//Search 
-//document.querySelector("#searchbtn").addEventListener("click", searchForStudent); 
 
   //looks after changes in the options under #sortingList
   document.querySelector("#sortingList").onchange = function () {
