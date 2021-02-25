@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11C.04.04 - Hacked Hogwarts Student List</title>
+    <link rel="stylesheet" href="hogwarts.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="heading">
+      <h1>Hogwarts</h1>
+      <h2>School of Witchcraft and Wizardry</h2>
+      <h3>Class Of 1991</h3>
+    </div>
+
+    <!-- Filter-->
+    <div class="filterbtns">
+      <button class="filter raise" data-action="filter" data-filter="all">All</button>
+      <button class="filter raise" data-action="filter" data-filter="gryffindor">Gryffindor</button>
+      <button class="filter raise" data-action="filter" data-filter="hufflepuff">Hufflepuff</button>
+      <button class="filter raise" data-action="filter" data-filter="ravenclaw">Ravenclaw</button>
+      <button class="filter raise" data-action="filter" data-filter="slytherin">Slytherin</button> 
+    </div>
+    
+    <div class="filterbtns">
+      <button class="filter raise" data-action="filter" data-filter="inquisitorial-squad">Inquisitorial Squad</button>
+      <button class="filter raise" data-action="filter" data-filter="unexpelled">Not expelled</button>
+      <button class="filter raise" data-action="filter" data-filter="expelled">Expelled</button>
+    </div>
+
+     <!-- Sorting -->
+     <select name="sortingList" id="sortingList">
+      <option>Sort after</option>
+      <option value="firstnamea-z">Firstname A-Z</option>
+      <option value="firstnamez-a">Firstname Z-A</option>
+      <option value="lastnamea-z">Lastname A-Z</option>
+      <option value="lastnamez-a">Lastname Z-A</option>
+      <option value="housea-z">House A-Z</option>
+      <option value="housez-a">House Z-A</option>
+    </select>
+
+    <!-- Search -->
+      <!-- <div id="search">
+          <input type="text" name="searchbar" id="searchBar" placeholder="Search for a student"/>
+      </div> -->
+
+    <!-- Student template -->
+    <section class="container"></section>
+
+    <template>
+      <article id="student_article">
+        <img src="" alt="" />
+        <h2 class="fullname"></h2>
+      </article>
+    </template>
+
+    <!-- Popup -->
+    <section id="popup">
+      <article>
+        <button id="close">X</button>
+        <img id="popup_student_pic" src="" alt="" />
+        <div>
+          <h2></h2>
+          <p>Blod-status: <span class="blodstatus"></span></p>
+          <p>House: <span class="house"></span></p>
+          <img class="house_crest" src="" alt="" />
+        </div>
+        <div id="popupbuttons">
+          <button id="prefectbutton" class="raise">Make prefect</button>
+          <button id="expellbutton" class="raise">Expell</button>
+          <button id="squadbutton" class="raise">Add to inquisitorial Squad</button>
+        </div>
+      </article>
+    </section>
+
+    <footer>© VIVI MORTENSEN 2021</footer>
+
+    <script src="hogwarts.js"></script>
+  </body>
+</html>

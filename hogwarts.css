@@ -1,0 +1,277 @@
+/* RESET START */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+/* RESET END */
+
+/* FONT START*/
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
+
+#heading {
+  text-align: center;
+}
+
+#heading h2 {
+  margin-bottom: 50px;
+}
+
+h1 {
+  font-family: "Cinzel Decorative", cursive;
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+h2 {
+  font-family: "Cinzel Decorative", cursive;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+h3 {
+  font-family: "Comfortaa", cursive;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+p {
+  font-family: "Comfortaa", cursive;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+/* FONT SLUT */
+
+body {
+  padding: 50px;
+
+  /* Gradient code from https://uigradients.com/ */
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* SORTING LIST START */
+select {
+  background-color: lightgrey;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: "Comfortaa", cursive;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1rem;
+  color: black;
+  background: #bdc3c7;
+  background: -webkit-linear-gradient(to top, #2c3e50, #bdc3c7);
+  background: linear-gradient(to top, #2c3e50, #bdc3c7);
+  margin: 0 auto;
+}
+
+#sortingList {
+  display: flex;
+  text-align: center;
+}
+/* SORTING LIST END */
+
+/* FILTER BUTTONS START */
+.filterbtns {
+  display: flex;
+  justify-content: center;
+}
+
+.filterbtns button {
+  margin: 10px;
+}
+
+button {
+  background-color: lightgrey;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+
+  font-family: "Comfortaa", cursive;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: black;
+
+  background: #bdc3c7;
+  background: -webkit-linear-gradient(to top, #2c3e50, #bdc3c7);
+  background: linear-gradient(to top, #2c3e50, #bdc3c7);
+}
+
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+  color: white;
+}
+
+/* FILTER BUTTONS END */
+
+/* STUDENT LIST START */
+.container {
+  width: 90vw;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+article {
+  background-color: white;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
+}
+
+article img {
+  width: 20%;
+}
+
+/* STUDENT LIST END */
+
+/* STUDENT POPUP START */
+#popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.8);
+  display: none;
+}
+
+#popup article {
+  display: flex;
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+  margin: 4rem auto;
+  background-color: white;
+  flex-wrap: wrap;
+  padding: 50px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+#close-popup {
+  position: absolute;
+  top: 3vw;
+  right: 3vw;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* HOUSE GRADIENT START */
+.gryffindor {
+  width: 300px;
+  height: 300px;
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #eeba30,
+    #d3a625,
+    #740001
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #eeba30,
+    #d3a625,
+    #740001
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.hufflepuff {
+  width: 300px;
+  height: 300px;
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #fff4b1,
+    #ffed86,
+    #ffdb00,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #fff4b1,
+    #ffed86,
+    #ffdb00,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.rawenclaw {
+  width: 300px;
+  height: 300px;
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #222f5b,
+    #0e1a40,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #222f5b,
+    #0e1a40,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.slytherin {
+  width: 300px;
+  height: 300px;
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #2a623d,
+    #1a472a,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #2a623d,
+    #1a472a,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+/* HOUSE GRADIENT END */
+/* STUDENT POPUP END */
+
+/* FOOTER START */
+footer {
+  font-family: "Comfortaa", cursive;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #cccccc;
+  padding: 50px;
+}
+/* FOOTER END */
