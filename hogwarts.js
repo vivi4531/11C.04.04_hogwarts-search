@@ -353,26 +353,7 @@ function showStudentList(students) {
   });
 }
 
-//Search 
-// function searchForStudent() {
-//   var input, filter, ul, li, a, i, txtValue;
-//   input = document.getElementById("myInput");
-//   filter = input.value.toUpperCase();
-//   ul = document.getElementById("myUL");
-//   li = ul.getElementsByTagName("li");
-//   for (i = 0; i < li.length; i++) {
-//       a = li[i].getElementsByTagName("a")[0];
-//       txtValue = a.textContent || a.innerText;
-//       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//           li[i].style.display = "";
-//       } else {
-//           li[i].style.display = "none";
-//       }
-//   }
-// }
-
-
-
+//Popup/modal for single student
 function openSingleStudent(student) {
   popup.style.display = "block";
   if (student.middlename == null && student.nickname == null) {
@@ -404,4 +385,23 @@ function openSingleStudent(student) {
 
   document.querySelector("#close").addEventListener("click", () => (popup.style.display = "none"));
 
-}
+//Div where the theme color will show
+const housecolor = document.querySelector('.housecolor');
+//Color for each house
+//Code from - https://www.w3schools.com/js/js_switch.asp
+switch (true) {
+  case student.house === 'Gryffindor':
+    housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(238,186,48,1) 0%, rgba(238,186,48,1) 25%, rgba(188,126,28,1) 50%, rgba(116,0,1,1) 75%, rgba(116,0,1,1) 100%);');
+    break;
+  case student.house === 'Slytherin':
+    housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(42,98,61,1) 0%, rgba(26,71,42,1) 50%, rgba(0,0,0,1) 100%);');
+    break;
+  case student.house === 'Hufflepuff':
+    housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(255,244,177,1) 0%, rgba(255,244,177,1) 25%, rgba(255,237,134,1) 50%, rgba(255,219,0,1) 75%, rgba(0,0,0,1) 100%);');
+    break;
+  case student.house === 'Ravenclaw':
+    housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(34,47,91,1) 0%, rgba(14,26,64,1) 75%, rgba(0,0,0,1) 100%);');
+    break;
+
+
+}}
