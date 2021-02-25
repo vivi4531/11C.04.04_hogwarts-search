@@ -3,8 +3,9 @@
 window.addEventListener("DOMContentLoaded", initPage);
 
 let json;
-const link = "https://petlatkea.dk/2021/hogwarts/students.json";
+const link = "https://petlatkea.dk/2021/hogwarts/students.json";  
 const allStudents = [];
+
 let temp = document.querySelector("template");
 let container = document.querySelector("section");
 let filterType = "all";
@@ -13,6 +14,9 @@ const search = document.querySelector(".search");
 search.addEventListener("input", startSearch);
 //Students 
 let numberOfStudents = document.querySelector(".studentnumber");
+
+//Expelled student list
+let expelledstudents = []; 
 
 function initPage() {
   console.log("ready");
@@ -48,6 +52,7 @@ function readBtns() {
   //looks after changes in the options under #sortingList
   document.querySelector("#sortingList").onchange = function () {
     selectedSort(this.value);
+
   };
 }
 
@@ -75,6 +80,8 @@ function filterList(filterredList) {
     filterredList = allStudents.filter(isRavenclaw);
   } else if (filterType === "slytherin") {
     filterredList = allStudents.filter(isSlytherin);
+  } else if (filterType === "expelled"){
+    filterredList = allStudents.filter(isExpelled); 
   }
   //TODO: filter on expelled and unexpelled
 
@@ -105,6 +112,13 @@ function isSlytherin(house) {
   //rerutns true if a students house is Slytherin
   return house.house === "Slytherin";
 }
+
+function isExpelled(expelled){
+  //returns true if a student is expelled
+  return expelled.expelled === "expelled"; 
+
+}
+
 
 function selectedSort(event) {
   //checks what option is clicked
@@ -216,7 +230,8 @@ function prepareObjects(jsonData) {
       photo: "-not set yet-",
       house: "-not set yet-",
       gender: " ",
-      prefect: false
+      prefect: false, 
+      expelled: false
     };
     // TODO: MISSING CODE HERE !!!
 
@@ -390,24 +405,26 @@ function openSingleStudent(student) {
   }
   //popup.querySelector(".blodstatus").textContent = student.house;
   popup.querySelector(".house").textContent = student.house;
-  //popup.querySelector(".housecrest").src = ;
-  if (student.photo != null) {
+
+  popup.querySelector(".housecrest").src = "housecrest/" + student.house.toLowerCase() + ".jpeg";
+    if (student.photo != null) {
     popup.querySelector("img").src = "images/" + student.photo;
   }
+
+  //Expell student button
+  document.querySelector("#expellbutton").addEventListener("click", expellStudent); 
 
   document.querySelector("#close").addEventListener("click", () => (popup.style.display = "none"));
 
 //Div where the theme color will show
 const housecolor = document.querySelector('.housecolor');
-const housecrest = document.querySelector('.housecrest').src;
 //Color for each house
 //Code from - https://www.w3schools.com/js/js_switch.asp
 switch (true) {
   //If there is a match, the associated block of code is executed
   //If there is no match, the default code block is executed (white background)
   case student.house === 'Gryffindor':
-    housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(238,186,48,1) 0%, rgba(238,186,48,1) 25%, rgba(188,126,28,1) 50%, rgba(116,0,1,1) 75%, rgba(116,0,1,1) 100%);');
-    housecrest.setAttribute('url(/housecrest/gryffindor.jpeg);'); 
+    housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(238,186,48,1) 0%, rgba(238,186,48,1) 25%, rgba(188,126,28,1) 50%, rgba(116,0,1,1) 75%, rgba(116,0,1,1) 100%);'); 
     break;
   case student.house === 'Slytherin':
     housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(42,98,61,1) 0%, rgba(26,71,42,1) 50%, rgba(0,0,0,1) 100%);');
@@ -421,3 +438,19 @@ switch (true) {
 
 
 }}
+
+//PREFECT 
+ //click prefect
+ document.querySelector(".prefect-icon").onclick = () => {
+  clickAddAsPrefect();
+};
+
+function clickAddAsPrefect(){
+document.querySelector(".prefect-icon").classList.remove("icon-grey");
+document.querySelector(".prefect-icon").classList.add("icon-color");}
+
+
+//EXPELL 
+function expellStudent(){
+  console.log("Expell button clicked")
+}

@@ -272,6 +272,14 @@ article img {
 
 /* STUDENT POPUP END */
 
+.icon-grey {
+  filter: grayscale(100%);
+}
+
+.icon-color {
+  filter: grayscale(0%);
+}
+
 /* FOOTER START */
 footer {
   font-family: "Comfortaa", cursive;
