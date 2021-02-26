@@ -57,6 +57,7 @@
       <article id="student_article">
         <img src="" alt="" />
         <h2 class="fullname"></h2>
+        <h3 class="house"></h3>
       </article>
     </template>
 
@@ -67,20 +68,34 @@
         <img id="popup_student_pic" src="" alt="" />
         <div>
           <h2></h2>
-          <p>Blod-status: <span class="blodstatus"></span></p>
+          <p>Bloodstatus: <span class="bloodstatus"></span></p>
           <p>House: <span class="house"></span></p>
           <p class="ifExpelled"></p>
           <img class="prefect-icon" src="icons/Prefect-badge.png" alt="">
           <img class="housecrest" src="" alt="" />
         </div>
         <div id="popupbuttons">
-          <button id="prefectbutton" class="raise">Make prefect</button>
-          <button id="expellbutton" class="raise">Expell</button>
-          <button id="squadbutton" class="raise">Add to inquisitorial Squad</button>
+          <button id="prefectbutton" class="raise prefectbutton">Make prefect</button>
+          <button id="expellbutton" class="raise expellbutton"></button>
+          <button id="squadbutton" class="raise squadbutton">Add to inquisitorial Squad</button>
         </div>
       </article>
     </section>
 
+    <!-- PREFECT POPUP DIALOGUE BOX -->
+    <div id="onlytwoprefects" class="hide">
+      <div class="overlay">
+        <div id="dialogcontent" class="dialogcontent">
+          <button class="closebutton">X</button>
+          <h1 id="warning">You can only have two prefects pr house and only one of each gender!</h1>
+          <h2>Remove one to make another one prefect</h2>
+          <p>
+            <button data-action="remove1">remove</button>
+            <span class="prefect1">NAME</span>
+          </p>
+        </div>
+      </div>
+    </div>
     
 
 

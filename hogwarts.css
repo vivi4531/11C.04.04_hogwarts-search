@@ -100,7 +100,10 @@ select {
   margin: 10px;
 }
 
-button {
+button,
+.squadbutton,
+.expellbutton,
+.prefectbutton {
   background-color: lightgrey;
   border: none;
   padding: 10px;
@@ -279,6 +282,68 @@ article img {
 .icon-color {
   filter: grayscale(0%);
 }
+
+/* MAKE PREFECT DIALOGUE POP UP START */
+.hide {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.8);
+  display: none;
+}
+
+.dialogcontent {
+  display: flex;
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+  margin: 4rem auto;
+  background-color: white;
+  flex-wrap: wrap;
+  padding: 50px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+#warning {
+  margin: 50px;
+  font-size: 3vw;
+  margin-top: 100px;
+  color: #6d0000;
+}
+
+.clickedprefectbutton {
+  font-family: "Cinzel Decorative", cursive;
+  font-weight: bolder;
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    #16a085 0%,
+    #f4d03f 51%,
+    #16a085 100%
+  );
+  margin: 5px;
+  padding: 10px 40px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+}
+.clickedprefectbutton:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+/* MAKE PREFECT DIALOGUE POP UP END */
 
 /* FOOTER START */
 footer {
