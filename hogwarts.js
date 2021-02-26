@@ -1,14 +1,6 @@
 "use strict";
 
-// let hasBeenHacked = false; 
-
-// function hackTheSystem(){
-// console.log("The system have been hacked"); 
-// if(!hasBeenHacked){
-//   hasBeenHacked = true; 
-//   //TODO: more
-// }
-// }
+//To activate the function hackTheSystem() - go to the console and type hackTheSystem()
 
 window.addEventListener("DOMContentLoaded", initPage);
 
@@ -31,6 +23,9 @@ let selectedStudent;
 
 //Expelled student list
 let expelledstudents = []; 
+
+//Hack the system 
+let systemIsHacked = false;
 
 function initPage() {
   console.log("ready");
@@ -530,7 +525,7 @@ switch (true) {
     housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(34,47,91,1) 0%, rgba(14,26,64,1) 75%, rgba(0,0,0,1) 100%);');
     break;
 }
-
+}
 //PREFECT 
  //click prefect
  document.querySelector(".prefect-icon").onclick = () => {
@@ -687,16 +682,82 @@ function addStudentToInquisitorialSquad(){
   }
 
   function makeSquad() {
+    //If the system has been hacked
+    if (systemIsHacked === true) {
+      setTimeout(function () {
+        toggleSquad();
+      }, 100);
+    }
+
     allStudents[index].inquisitorialsquad = true;
     document.querySelector("#squadbutton").classList.add("prefectbuttonclicked");
   }
 
   function removeSquad() {
     document.querySelector("#squadbutton").classList.remove("prefectbuttonclicked");
+    //If the system has been hacked
+    if (systemIsHacked === true) {
+      setTimeout(function () {
+        alert("Wuups.. Can't do that.. HA HA HA!");
+      }, 100);
+      //alert("Wuups.. Can't do that.. HA HA HA!");
+    }
+
     allStudents[index].inquisitorialsquad = false;
   }
 }
 
+
+function hackTheSystem() {
+  if (systemIsHacked === false) {
+    //add me to studentlist
+    console.log("You have been hacked!");
+    const thisIsMe = Object.create(studentTemplate);
+    thisIsMe.firstname = "Vivi";
+    thisIsMe.lastname = "Mortensen";
+    thisIsMe.middlename = null;
+    thisIsMe.nickname = "Hermione";
+    thisIsMe.photo = "me.png";
+    thisIsMe.house = "Hufflepuff";
+    thisIsMe.gender = "girl";
+    thisIsMe.prefect = true;
+    thisIsMe.expelled = false;
+    thisIsMe.bloodstatus = "Pure-blood";
+    thisIsMe.squad = false;
+
+    allStudents.unshift(thisIsMe);
+
+    //fuck up blood-status
+    systemIsHacked = true;
+
+    messWithBloodstatus();
+
+    buildList();
+  } else {
+    alert("Wuups.. System's allready been hacked!");
+  }
+  setTimeout(function () {
+    alert("The Dark Lord is back, you have been hacked!!! ☠ ☠ ☠");
+  }, 1000);
 }
 
+function messWithBloodstatus() {
+  allStudents.forEach((student) => {
+    if (student.bloodstatus === "Muggle") {
+      student.bloodstatus = "Pure blood";
+    } else if (student.bloodstatus === "Half blood") {
+      student.bloodstatus = "Pure blood";
+    } else {
+      let bloodNumber = Math.floor(Math.random() * 3);
+      if (bloodNumber === 0) {
+        student.bloodstatus = "Muggle";
+      } else if (bloodNumber === 1) {
+        student.bloodstatus = "Half blood";
+      } else {
+        student.bloodstatus = "Pure blood";
+      }
+    }
+  });
+
+}
 
