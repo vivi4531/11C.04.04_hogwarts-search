@@ -1,5 +1,15 @@
 "use strict";
 
+// let hasBeenHacked = false; 
+
+// function hackTheSystem(){
+// console.log("The system have been hacked"); 
+// if(!hasBeenHacked){
+//   hasBeenHacked = true; 
+//   //TODO: more
+// }
+// }
+
 window.addEventListener("DOMContentLoaded", initPage);
 
 let json;
@@ -81,7 +91,7 @@ function filterList(filterredList) {
   } else if (filterType === "slytherin") {
     filterredList = allStudents.filter(isSlytherin);
   } else if (filterType === "expelled"){
-    filterredList = allStudents.filter(isExpelled); 
+    filterredList = allStudents.filter(expelledstudents); 
   }
   //TODO: filter on expelled and unexpelled
 
@@ -402,7 +412,13 @@ function openSingleStudent(student) {
       '"' +
       " " +
       student.lastname;
+  } if (student.expelled !=true) {
+    document.querySelector("#expellbutton").textContent = "Expelled";
+    document.querySelector("#expellbutton").style.display = "none";
+  } else {
+    popup.querySelector(".ifExpelled").textContent = "";
   }
+
   //popup.querySelector(".blodstatus").textContent = student.house;
   popup.querySelector(".house").textContent = student.house;
 
@@ -411,9 +427,11 @@ function openSingleStudent(student) {
     popup.querySelector("img").src = "images/" + student.photo;
   }
 
-  //Expell student button
-  document.querySelector("#expellbutton").addEventListener("click", expellStudent); 
 
+  //Expell student button
+  document.querySelector("#expellbutton").addEventListener("click", expellStudent);
+
+  //Close popup
   document.querySelector("#close").addEventListener("click", () => (popup.style.display = "none"));
 
 //Div where the theme color will show
@@ -435,9 +453,7 @@ switch (true) {
   case student.house === 'Ravenclaw':
     housecolor.setAttribute('style', 'background: linear-gradient(180deg, rgba(34,47,91,1) 0%, rgba(14,26,64,1) 75%, rgba(0,0,0,1) 100%);');
     break;
-
-
-}}
+}
 
 //PREFECT 
  //click prefect
@@ -453,4 +469,22 @@ document.querySelector(".prefect-icon").classList.add("icon-color");}
 //EXPELL 
 function expellStudent(){
   console.log("Expell button clicked")
+  expelled(student); 
+}
+
+function expelled(student) {
+  if (student.expelled === true) {
+    console.log("This student is alredy expelled!");
+    //TODO: show warning dialogue box
+  } else {
+    student.expelled = true;
+    let expelledIndex = allStudents.indexOf(student);
+    console.log(expelledIndex);
+    let expelledStudent = allStudents.splice(expelledIndex, 1);
+    console.log(expelledStudent, "the one expelled student");
+    expelledstudents.push(expelledstudents[0]);
+    console.log(expelledstudents, "Expelled students array");
+  }
+  buildList();
+}
 }
