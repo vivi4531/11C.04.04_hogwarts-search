@@ -18,6 +18,10 @@ img {
   text-align: center;
 }
 
+#heading img {
+  width: 20%;
+}
+
 #heading h2 {
   margin-bottom: 50px;
 }
@@ -31,13 +35,15 @@ h1 {
 h2 {
   font-family: "Cinzel Decorative", cursive;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.4rem;
+  text-align: center;
 }
 
-h3 {
+h3,
+.studentnumber {
   font-family: "Comfortaa", cursive;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 p {
@@ -47,6 +53,28 @@ p {
 }
 
 /* FONT SLUT */
+
+/* LINK START */
+a:link {
+  text-decoration: none;
+  color: #000000;
+}
+a:visited {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+a:active {
+  text-decoration: none;
+  color: #000000;
+}
+
+/* LINK END */
 
 body {
   padding: 50px;
@@ -142,6 +170,10 @@ button,
 }
 
 article {
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; */
   background-color: white;
   padding: 10px;
   border-radius: 15px;
@@ -176,7 +208,8 @@ article img {
   flex-wrap: wrap;
   padding: 50px;
 
-  justify-content: center;
+  /* justify-content: center; */
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -188,6 +221,12 @@ article img {
   color: black;
   border-radius: 5px;
   cursor: pointer;
+}
+
+#close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
 }
 
 /* HOUSE GRADIENT START */
@@ -269,8 +308,11 @@ article img {
 .housecrest {
   width: 100px;
   height: 100px;
-  background-color: blue;
+  /* background-color: blue; */
   animation: rota 5s;
+}
+.icons {
+  width: 5%;
 }
 
 /* STUDENT POPUP END */

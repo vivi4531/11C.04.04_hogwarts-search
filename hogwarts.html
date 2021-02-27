@@ -14,12 +14,13 @@
   </head>
   <body>
     <div id="heading">
-      <h1>Hogwarts</h1>
+      <img src="housecrest/hogwarts.svg" alt="">
+      <a href="hogwarts.html"><h1>Hogwarts</h1></a>
       <h2>School of Witchcraft and Wizardry</h2>
-      <h3>Class Of 1991</h3>
+      <h3>Class Of 1991</h3><div class="studentnumber"></div>
     </div>
 
-    <div class="studentnumber"></div>
+    
 
     <!-- Filter-->
     <div class="filterbtns">
@@ -65,15 +66,17 @@
     <section id="popup">
       <article class="housecolor">
         <button id="close">X</button>
-        <img id="popup_student_pic" src="" alt="" />
         <div>
           <h2></h2>
           <p>Bloodstatus: <span class="bloodstatus"></span></p>
           <p>House: <span class="house"></span></p>
           <p class="ifExpelled"></p>
-          <img class="prefect-icon" src="icons/Prefect-badge.png" alt="">
-          <img class="housecrest" src="" alt="" />
+          
         </div>
+        <img id="popup_student_pic" src="" alt="" />
+        <img class="icons" src="icons/bloodstatus-icon.png" alt="bloodstatus icon">
+        <img class="housecrest" src="" alt="" />
+        
         <div id="popupbuttons">
           <button id="prefectbutton" class="raise prefectbutton">Make prefect</button>
           <button id="expellbutton" class="raise expellbutton"></button>

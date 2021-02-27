@@ -4,6 +4,7 @@
 
 window.addEventListener("DOMContentLoaded", initPage);
 
+//Variables
 let json;
 let bloodstatus; 
 const link = "https://petlatkea.dk/2021/hogwarts/students.json";  
@@ -26,6 +27,21 @@ let expelledstudents = [];
 
 //Hack the system 
 let systemIsHacked = false;
+
+//Create new object
+const studentTemplate = {
+  firstname: "-not set yet-",
+  lastname: "-not set yet-",
+  middlename: "-not set yet-",
+  nickname: "-not set yet-",
+  photo: "-not set yet-",
+  house: "-not set yet-",
+  gender: " ",
+  prefect: false, 
+  expelled: false, 
+  bloodstatus: "", 
+  inquisitorialsquad: false
+};
 
 function initPage() {
   console.log("ready");
@@ -53,9 +69,7 @@ function startSearch(event) {
 
 function readBtns() {
   //adds an eventlistener to each filterbutton
-  document
-    .querySelectorAll("[data-action='filter']")
-    .forEach((button) => button.addEventListener("click", selectedFilter));
+  document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectedFilter));
 
   //looks after changes in the options under #sortingList
   document.querySelector("#sortingList").onchange = function () {
@@ -65,7 +79,7 @@ function readBtns() {
 }
 
 function selectedFilter(event) {
-  //reads witch button is clicked
+  //Reads which button is clicked
   const filter = event.target.dataset.filter;
   console.log(`Use this ${filter}`);
   //filterList(filter);
@@ -90,6 +104,8 @@ function filterList(filterredList) {
     filterredList = allStudents.filter(isSlytherin);
   } else if (filterType === "expelled"){
     filterredList = expelledstudents; 
+  }else if (filterType === "inquisitorial-squad") {
+    filterredList = inquisitorialsquad;
   }
   //TODO: filter on expelled and unexpelled
 
@@ -120,13 +136,6 @@ function isSlytherin(house) {
   //rerutns true if a students house is Slytherin
   return house.house === "Slytherin";
 }
-
-// function isExpelled(expelled){
-//   //returns true if a student is expelled
-//   return expelled.expelled === "expelled"; 
-
-// }
-
 
 function selectedSort(event) {
   //checks what option is clicked
@@ -236,31 +245,11 @@ async function fetchBloodstatusData() {
   bloodstatus = await respons.json();
 }
 
-
-
 function prepareObjects(jsonData) {
   jsonData.forEach((jsonObject) => {
-    // TODO: Create new object with cleaned data - and store that in the allAnimals array
-
-    //Create new object
-    const studentTemplate = {
-      firstname: "-not set yet-",
-      lastname: "-not set yet-",
-      middlename: "-not set yet-",
-      nickname: "-not set yet-",
-      photo: "-not set yet-",
-      house: "-not set yet-",
-      gender: " ",
-      prefect: false, 
-      expelled: false, 
-      bloodstatus: "", 
-      inquisitorialsquad: false
-    };
-    // TODO: MISSING CODE HERE !!!
-
     const fullname = jsonObject.fullname.trim();
 
-    //Split "fullname" into smaller parts after each space. So we get name, type, description and age
+    //Split "fullname" into smaller parts after each space
     const fullName = jsonObject.fullname.toLowerCase().trim();
     const splitFullName = fullName.split(" ");
     const house = jsonObject.house.toLowerCase().trim();
@@ -341,6 +330,7 @@ function prepareObjects(jsonData) {
     //Photo
     if (student.lastname != null) {
       if (indexhyphen == -1) {
+        //Checks Patil sisters firstname to match photo
         if (student.firstname == "Padma" || student.firstname == "Parvati") {
           student.photo =
             lastName.toLowerCase() +
@@ -378,9 +368,6 @@ function prepareObjects(jsonData) {
     //Prefect
     student.prefect = false; 
 
-    //Show number of students
-    numberOfStudents.textContent = `Students: ${allStudents.length}`;
-   
     //Adds all objects (students) into the array
     allStudents.push(student);
   });
@@ -398,7 +385,6 @@ function checkBloodStatus(student){
   }
 }
 
-
 function showStudentList(student) {
   console.log(student);
   container.innerHTML = "";
@@ -413,15 +399,15 @@ function showStudentList(student) {
     if (student.photo != null) {
       klon.querySelector("img").src = "images/" + student.photo;
     }
-    if (student.house != null) {
-      klon.querySelector(".house").textContent = student.house;
-    }
     klon
       .querySelector("article")
       .addEventListener("click", () => openSingleStudent(student));
 
     container.appendChild(klon);
   });
+
+  //Show number of students
+  numberOfStudents.textContent = `Students: ${student.length}`;
 
 }
 
@@ -458,15 +444,9 @@ function openSingleStudent(student) {
       student.lastname;
   } if (student.expelled !=true) {
     document.querySelector("#expellbutton").textContent = "Expell student";
-    //document.querySelector("#expellbutton").style.display = "none";
   } else {
     popup.querySelector(".ifExpelled").textContent = "";
   }
-  // if (student.prefect != true) {
-  //   document.querySelector("#prefectbutton").classList.remove("clickedprefectbutton");
-  // } else {
-  //   document.querySelector("#prefectbutton").classList.add("clickedprefectbutton");
-  // }
   if (student.inquisitorialsquad != true) {
     document.querySelector("#squadbutton").classList.remove("clickedprefectbutton");
   } else {
@@ -478,7 +458,7 @@ function openSingleStudent(student) {
 
   popup.querySelector(".house").textContent = student.house;
 
-  popup.querySelector(".housecrest").src = "housecrest/" + student.house.toLowerCase() + ".jpeg";
+  popup.querySelector(".housecrest").src = "housecrest/" + student.house.toLowerCase() + ".png";
     if (student.photo != null) {
     popup.querySelector("img").src = "images/" + student.photo;
   }
@@ -493,8 +473,6 @@ function openSingleStudent(student) {
   document.querySelector("#squadbutton").addEventListener("click", addStudentToInquisitorialSquad);
 
   //Close popup
-  //document.querySelector("#close").addEventListener("click", () => (popup.style.display = "none"));
-
   document.querySelector("#close").addEventListener("click", () => {popup.style.display = "none";
     document.querySelector("#expellbutton").removeEventListener("click", () => {});
     document.querySelector("#prefectbutton").removeEventListener("click", () => {});
@@ -502,8 +480,6 @@ function openSingleStudent(student) {
   });
 
   selectedStudent = student;
-
-
 
 //Div where the theme color will show
 const housecolor = document.querySelector('.housecolor');
@@ -532,11 +508,6 @@ switch (true) {
   clickAddAsPrefect();
 };
 
-function clickAddAsPrefect(){
-document.querySelector(".prefect-icon").classList.remove("icon-grey");
-document.querySelector(".prefect-icon").classList.add("icon-color");}
-
-
 //EXPELL 
 function expellStudent(){
   console.log("Expell button clicked")
@@ -550,7 +521,7 @@ function expelled(student) {
   } else {
     student.expelled = true;
     
-    let expelledIndex = allStudents.indexOf(student);
+    let expelledIndex = allStudents.indexOf(students);
     console.log(expelledIndex);
     let expelledStudent = allStudents.splice(expelledIndex, 1);
     console.log(expelledStudent, "the one expelled student");
@@ -570,7 +541,7 @@ function makeStudentPrefect() {
       removePrefect(student);
     }
   } else {
-    alert("This student is expelled! Expelled students can't be a Prefect!");
+    alert("This student is expelled! Expelled students can't be made Prefects.");
   }
 
   function housePrefectCheck() {
@@ -662,7 +633,7 @@ function addStudentToInquisitorialSquad(){
     }
   } else {
     alert(
-      "This student is expelled! An expelled students can't be a part of the Inquisitorial Squad!"
+      "This student is expelled! An expelled student can't be a part of the Inquisitorial Squad!"
     );
   }
 
@@ -707,7 +678,6 @@ function addStudentToInquisitorialSquad(){
   }
 }
 
-
 function hackTheSystem() {
   if (systemIsHacked === false) {
     //add me to studentlist
@@ -737,7 +707,7 @@ function hackTheSystem() {
     alert("Wuups.. System's allready been hacked!");
   }
   setTimeout(function () {
-    alert("The Dark Lord is back, you have been hacked!!! ☠ ☠ ☠");
+    alert("You have been hacked! ☠️☠️☠️");
   }, 1000);
 }
 
